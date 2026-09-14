@@ -1,21 +1,6 @@
-# Problem Statement
+# Problem statement
 
-## Background
+In large multi-site trials, thousands of visits, medication records, and assessments can conceal protocol deviations until periodic monitoring or an audit. Clinical Risk Managers need earlier prioritization, CRAs need an actionable site worklist, and Sponsor QA leads need traceable evidence that recurring noncompliance is being controlled before participant safety, data integrity, or submission quality is affected.
 
-[Describe the broader context. What domain or industry does this problem belong to? What situation creates the problem?]
+Trial Sentinel continuously applies a machine-readable synthetic protocol to incoming synthetic visit data, highlights the sites whose risk signals are accumulating, and turns each finding into a reviewable draft CAPA. It is a decision-support demonstration—not a validated clinical or regulatory system.
 
-## The Problem
-
-[State the problem clearly and specifically. Avoid vague statements like "things are slow" — instead say "Operations teams spend an average of 45 minutes per incident diagnosing pipeline failures because logs are scattered across 6 different tools."]
-
-## Who is Affected
-
-[Describe the specific user or persona experiencing this problem. Be concrete — not "developers" but "backend engineers managing CI/CD pipelines in enterprises with 50+ microservices."]
-
-## Why It Matters
-
-[What is the cost of this problem? Lost time? Revenue? Safety risk? Frustration? Quantify if possible.]
-
-## Why Existing Solutions Fall Short
-
-[Briefly explain what people currently do and why it doesn't fully solve the problem. This sets up why your solution is needed.]

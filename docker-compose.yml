@@ -1,0 +1,25 @@
+services:
+  api:
+    build: .
+    environment:
+      DATABASE_URL: sqlite:////data/clinical_trial.db
+      LLM_PROVIDER: ${LLM_PROVIDER:-openai}
+      LLM_BASE_URL: ${LLM_BASE_URL:-https://api.openai.com/v1}
+      LLM_MODEL: ${LLM_MODEL:-gpt-4o-mini}
+      LLM_API_KEY: ${LLM_API_KEY:-}
+    volumes: ["demo-db:/data"]
+    ports: ["8000:8000"]
+    healthcheck:
+      test: ["CMD", "python", "-c", "import urllib.request; urllib.request.urlopen('http://localhost:8000/health')"]
+      interval: 10s
+      timeout: 3s
+      retries: 10
+  frontend:
+    build: ./src/frontend
+    environment: ["VITE_API_URL=http://localhost:8000"]
+    ports: ["3000:80"]
+    depends_on:
+      api: {condition: service_healthy}
+volumes:
+  demo-db:
+

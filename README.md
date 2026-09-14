@@ -1,121 +1,138 @@
-# 🚀 [Your Project Title Here]
+# Clinical Trial Risk Monitor & Protocol Deviation Detector
 
-> ⚠️ **Replace everything in `[ ]` brackets with your actual content before submission.**
+> **Trial Sentinel** is an explainable, synthetic-data-only hackathon demo that detects protocol deviations, prioritizes risky sites, and creates human-reviewable CAPA drafts before issues compound.
 
----
+![Python](https://img.shields.io/badge/Python-3.11+-123c31) ![FastAPI](https://img.shields.io/badge/FastAPI-0.115+-059669) ![React](https://img.shields.io/badge/React-TypeScript-2563eb) ![Data](https://img.shields.io/badge/Data-100%25_synthetic-e86f51)
 
-## 👥 Team
+## Team
 
-| Field | Value |
+- **Team name:** _Your team name_
+- **Members:** _Names and roles_
+- **Contact:** _Your contact details_
+
+## Problem statement
+
+A global trial can generate thousands of visits across hundreds of sites. Missed visits, incorrect dosing, prohibited co-medications, and incomplete assessments can remain buried until monitoring or an audit—too late for inexpensive intervention. Clinical Risk Managers, CRAs, and Sponsor QA teams need a live, explainable worklist that shows where risk is accumulating and why.
+
+## Solution
+
+Trial Sentinel ingests a machine-readable protocol and synthetic patient-visit records, applies deterministic compliance rules, optionally reviews ambiguous notes through a swappable LLM adapter, assigns an impact-oriented severity, and ranks all 200 sites with a transparent risk formula. Every finding retains its protocol clause, rationale, confidence, and source. Users can drill into a site trend and export a structured CAPA draft as PDF or DOCX.
+
+The local demo works fully without an API key. “IBM Bob” is represented by the modular Python orchestration boundary connecting ingestion, deviation detection, severity classification, scoring, and CAPA generation.
+
+## Key features
+
+- Deterministic detection of missed/out-of-window visits, dose amount, route, banned medications, and missing assessments
+- Optional OpenAI-compatible or Anthropic note review behind one `LLMClient` interface
+- Rule-first severity classification: `MAJOR`, `MINOR`, or `ADMINISTRATIVE`, with rationale and protocol traceability
+- 0–100 site-risk ranking using seven documented leading indicators and Low/Medium/High/Critical bands
+- Sortable risk table, visual bands, deviation filtering, site drill-down, and monthly trend chart
+- One-click CAPA generation with root-cause hypothesis, corrective/preventive actions, owner, target date, effectiveness check, and PDF/DOCX export
+- Deterministic generator for 200 fictional sites, 1,000 fictional participants, and exactly 5,000 fictional visits
+- FastAPI OpenAPI documentation, SQLite local persistence, Docker Compose, backend tests, and GitHub Actions CI
+
+## Tech stack
+
+| Layer | Technology |
 |---|---|
-| **Team Name** | [Your Team Name] |
-| **Track** | [AI / DevOps / Sustainability / Open] |
-| **Team Lead** | [Name] — [email@ibm.com] |
-| **Members** | [Name 1], [Name 2], [Name 3] |
+| API and orchestration | Python 3.11+, FastAPI, Pydantic |
+| Storage | SQLAlchemy + SQLite (database URL is replaceable) |
+| Rules and scoring | Typed deterministic Python modules |
+| AI | Optional OpenAI-compatible Chat Completions or Anthropic Messages API |
+| Reports | ReportLab PDF + python-docx |
+| Frontend | React, TypeScript, Tailwind CSS, Recharts, Lucide |
+| Operations | Docker, Docker Compose, GitHub Actions |
 
----
+## Repository structure
 
-## 🎯 Problem Statement
-
-> In 2–3 sentences: What problem does your project solve? Who experiences this problem?
-
-[Describe the real-world problem your project addresses. Be specific about who the user is and what pain point they face.]
-
----
-
-## 💡 Solution
-
-> In 2–3 sentences: What did you build? How does it solve the problem above?
-
-[Describe your solution clearly. Explain the core mechanism — what makes it work.]
-
----
-
-## ✨ Key Features
-
-- **Feature 1:** [Brief description — e.g., "Real-time anomaly detection using watsonx.ai"]
-- **Feature 2:** [Brief description]
-- **Feature 3:** [Brief description]
-- **Feature 4:** [Optional]
-- **Feature 5:** [Optional]
-
----
-
-## 🛠️ Tech Stack
-
-| Category | Technologies |
-|---|---|
-| **Languages** | [e.g., Python, TypeScript] |
-| **Frameworks** | [e.g., FastAPI, React] |
-| **IBM Technologies** | [e.g., watsonx.ai, IBM Bob, IBM Cloud] |
-| **Databases** | [e.g., PostgreSQL, Redis] |
-| **Other** | [e.g., Docker, GitHub Actions] |
-
----
-
-## 📁 Repository Structure
-
-```
-├── src/                  # All source code
-├── docs/                 # Written documentation
-│   ├── problem-statement.md
-│   ├── solution-overview.md
-│   ├── architecture.md
-│   └── setup-guide.md
-├── demo/                 # Demo artifacts
-│   ├── screenshots/      # App screenshots
-│   └── demo-video-link.txt  # Link to demo video
-├── presentation/         # Slide deck
-└── submission.yaml       # Structured submission metadata
+```text
+├── src/
+│   ├── ingestion/          # CSV/JSON and HL7-like VIS parser
+│   ├── deviation_engine/   # deterministic rules, severity, LLM adapters
+│   ├── risk_scoring/       # explicit weighted site model
+│   ├── capa_generator/     # narrative and PDF/DOCX exports
+│   ├── api/                # FastAPI, schemas, persistence, seeding
+│   └── frontend/           # React + TypeScript + Tailwind dashboard
+├── data/
+│   ├── generate_synthetic.py
+│   └── sample/             # protocol; CSVs materialize on first run
+├── docs/                   # problem, solution, architecture, setup
+├── demo/                   # screenshot/video placeholders
+├── presentation/           # eight-slide submission outline
+├── tests/                  # engine, scoring, API integration tests
+├── Dockerfile
+├── docker-compose.yml
+├── .env.example
+└── submission.yaml
 ```
 
----
+## How to run
 
-## ⚡ How to Run
-
-> **Copy these exact steps from your [`docs/setup-guide.md`](docs/setup-guide.md)**
+### Docker (recommended)
 
 ```bash
-# 1. Clone the repo
-git clone https://github.com/[your-repo].git
-cd [your-repo]
-
-# 2. Install dependencies
-[your install command here]
-
-# 3. Configure environment
 cp .env.example .env
-# Edit .env with your values
-
-# 4. Run the project
-[your run command here]
+docker compose up --build
 ```
 
----
+Open the dashboard at <http://localhost:3000> and API docs at <http://localhost:8000/docs>. The first API start creates the entire synthetic dataset and analyzes it. An API key is not needed.
 
-## 🖥️ Demo
+### Local
 
-| Artifact | Link |
-|---|---|
-| 📹 Demo Video | [See demo/demo-video-link.txt](demo/demo-video-link.txt) |
-| 🌐 Live Demo | [See demo/live-demo-url.txt](demo/live-demo-url.txt) |
-| 🖼️ Screenshots | [See demo/screenshots/](demo/screenshots/) |
-| 📊 Presentation | [See presentation/slides.pdf](presentation/) |
+```bash
+python3 -m venv .venv
+source .venv/bin/activate
+pip install -e '.[dev]'
+python data/generate_synthetic.py
+uvicorn src.api.main:app --reload
+```
 
----
+Then, in another terminal:
 
-## ⚠️ Known Limitations
+```bash
+cd src/frontend
+npm install
+npm run dev
+```
 
-> Be honest — judges appreciate transparency over overclaiming.
+See [docs/setup-guide.md](docs/setup-guide.md) for LLM configuration and verification commands.
 
-- [Limitation 1: e.g., "Authentication is mocked — not production-ready"]
-- [Limitation 2: e.g., "Only tested on Chrome"]
-- [Limitation 3: e.g., "Feature X is scaffolded but not fully implemented"]
+## API
 
----
+| Method | Endpoint | Purpose |
+|---|---|---|
+| GET | `/patients` | Paginated fictional participants, optional site filter |
+| GET | `/visits` | Paginated synthetic visits, optional site filter |
+| GET | `/deviations` | Severity/site/date-filtered findings |
+| GET | `/sites/risk` | Ranked 0–100 site risk with monthly trends |
+| GET | `/sites/{site_id}` | Site, risk, and recent findings |
+| POST | `/capa/generate` | Draft CAPA by deviation or site; Markdown/PDF/DOCX |
 
-## 🏅 What We're Most Proud Of
+## Demo
 
-[Tell the judges what part of your submission is strongest and worth paying close attention to.]
+1. Open **Site overview** and inspect the risk-ranked worklist.
+2. Select a high-risk site to view monitoring recency, Major count, and trend.
+3. Open **Deviation feed**, filter severity, and inspect the cited clause and rationale.
+4. Click **Generate CAPA PDF** on any finding.
 
----
+The final video link belongs in `demo/demo-video-link.txt`; final screenshots belong in `demo/screenshots/`.
+
+## Clinical and regulatory design notes
+
+The severity labels are operational demo conventions informed by protocol compliance, record quality, monitoring, and noncompliance controls in ICH E6(R2); they are not asserted to be an ICH-defined taxonomy. The full rule mapping, exact risk weights, AI controls, and data flow are documented in [docs/architecture.md](docs/architecture.md).
+
+## Known limitations
+
+- All shipped/generated data is synthetic. The system must not be used with real participant data in its current form.
+- LLM findings and severity suggestions require qualified human review and sign-off for any regulatory or clinical use.
+- No live EHR, EDC, CTMS, ePRO, laboratory, or safety-system integration exists; ingestion adapters are demonstration connectors.
+- Authentication and authorization are intentionally simplified for a local hackathon demo.
+- The application is not validated against 21 CFR Part 11, EU Annex 11, sponsor SOPs, computer-system validation, or production GxP controls.
+- It does not provide medical advice, automated eligibility decisions, or autonomous safety reporting.
+- The risk weights and thresholds are transparent assumptions, not clinically calibrated or prospectively validated.
+- CAPA root causes are hypotheses; investigation, approval, effectiveness checks, signatures, and audit trails remain human responsibilities.
+
+## Responsible use
+
+Use only fictional data. Keep LLM credentials server-side, follow organizational governance, and require investigator/QA review of every material decision. This repository demonstrates earlier risk visibility; it is not a replacement for clinical judgment, monitoring plans, or controlled quality processes.
+

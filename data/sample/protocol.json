@@ -1,0 +1,13 @@
+{
+  "protocol_id": "SYN-CTRM-001",
+  "title": "Synthetic Phase III Demo Protocol",
+  "banned_medications": ["warfarin", "rifampin"],
+  "eligibility": {"min_age": 18, "max_age": 80},
+  "visit_rules": [
+    {"visit_type":"SCREENING","target_day":0,"window_days":7,"dose_mg":null,"dose_tolerance_pct":0.05,"route":null,"required_assessments":["vitals","adverse_events","cbc"],"clause":"Section 5.1 Screening visit"},
+    {"visit_type":"BASELINE","target_day":7,"window_days":3,"dose_mg":100,"dose_tolerance_pct":0.05,"route":"oral","required_assessments":["vitals","adverse_events"],"clause":"Section 5.2 Baseline visit"},
+    {"visit_type":"WEEK_4","target_day":35,"window_days":3,"dose_mg":100,"dose_tolerance_pct":0.05,"route":"oral","required_assessments":["vitals","adverse_events"],"clause":"Section 5.3 Week 4 visit"},
+    {"visit_type":"WEEK_8","target_day":63,"window_days":3,"dose_mg":100,"dose_tolerance_pct":0.05,"route":"oral","required_assessments":["vitals","adverse_events","cbc"],"clause":"Section 5.4 Week 8 visit"},
+    {"visit_type":"WEEK_12","target_day":91,"window_days":3,"dose_mg":100,"dose_tolerance_pct":0.05,"route":"oral","required_assessments":["vitals","adverse_events"],"clause":"Section 5.5 Week 12 visit"}
+  ]
+}
