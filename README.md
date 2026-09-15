@@ -6,9 +6,9 @@
 
 ## Team
 
-- **Team name:** _Your team name_
-- **Members:** _Names and roles_
-- **Contact:** _Your contact details_
+- **Team name:** ARIP TEAM
+- **Team lead:** Mann Lathiya
+- **Contact:** lathiyamann49@gmail.com
 
 ## Problem statement
 
@@ -135,4 +135,3 @@ The severity labels are operational demo conventions informed by protocol compli
 ## Responsible use
 
 Use only fictional data. Keep LLM credentials server-side, follow organizational governance, and require investigator/QA review of every material decision. This repository demonstrates earlier risk visibility; it is not a replacement for clinical judgment, monitoring plans, or controlled quality processes.
-

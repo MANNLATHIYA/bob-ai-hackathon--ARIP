@@ -2,14 +2,51 @@ name: Clinical Trial Risk Monitor & Protocol Deviation Detector
 short_name: Trial Sentinel
 track: Pharma & Biotech
 description: Explainable protocol deviation detection, site risk ranking, and human-reviewable CAPA drafts using synthetic clinical-trial data.
-repository: REPLACE_WITH_REPOSITORY_URL
+repository: https://github.com/MANNLATHIYA/bob-ai-hackathon--ARIP
 demo_url: REPLACE_WITH_DEMO_URL
 video_url: REPLACE_WITH_VIDEO_URL
 team:
-  name: REPLACE_WITH_TEAM_NAME
+  name: ARIP TEAM
+  track: AI
+  lead:
+    name: Mann Lathiya
+    email: lathiyamann49@gmail.com
   members:
-    - name: REPLACE_WITH_MEMBER_NAME
-      role: REPLACE_WITH_ROLE
+    - name: Mann Lathiya
+      email: lathiyamann49@gmail.com
+      role: Team Lead
+submission:
+  title: Clinical Trial Risk Monitor & Protocol Deviation Detector
+  problem_statement: >-
+    Clinical Risk Managers, CRAs, and Sponsor QA teams need to detect protocol
+    deviations across thousands of visits and hundreds of sites before late
+    discovery compromises participant safety, data integrity, and trial timelines.
+  solution_summary: >-
+    Trial Sentinel compares synthetic visit records against a machine-readable
+    protocol, classifies deviations, ranks site risk with transparent weights,
+    and generates draft CAPA reports for qualified human review.
+  key_features:
+    - Deterministic visit-window, dosing, route, medication, and assessment checks
+    - Optional OpenAI-compatible or Anthropic review of clinical notes
+    - Site risk ranking and trend dashboard across 200 synthetic sites
+    - Draft CAPA reports exported as Markdown, PDF, or DOCX
+    - Reproducible synthetic dataset with 1000 participants and 5000 visits
+  tech_stack:
+    languages: [Python, TypeScript]
+    frameworks: [FastAPI, React, Tailwind CSS, Recharts]
+    ibm_technologies: []
+    databases: [SQLite]
+    other: [Docker, GitHub Actions]
+  known_limitations: >-
+    Synthetic data only. LLM findings and CAPA drafts require human review.
+    No live EHR or CTMS integration, production authentication, or GxP validation.
+artifacts:
+  source_code: src/
+  setup_guide: docs/setup-guide.md
+  architecture_doc: docs/architecture.md
+  demo_video: demo/demo-video-link.txt
+  screenshots: demo/screenshots/
+  presentation: presentation/
 data_policy:
   synthetic_only: true
   contains_phi: false
@@ -17,4 +54,3 @@ run:
   command: docker compose up --build
   frontend: http://localhost:3000
   api_docs: http://localhost:8000/docs
-
