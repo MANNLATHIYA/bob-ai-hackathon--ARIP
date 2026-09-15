@@ -1,0 +1,15 @@
+#!/bin/zsh
+set -eu
+PROJECT="$(cd "$(dirname "$0")/../../../../" && pwd)"
+cd "$PROJECT"
+if ! /usr/bin/curl -fsS http://127.0.0.1:8000/health >/dev/null 2>&1; then
+  /usr/bin/nohup "$PROJECT/.venv/bin/python" -m uvicorn src.api.main:app --app-dir "$PROJECT" --host 127.0.0.1 --port 8000 >"$PROJECT/work/app-api.log" 2>&1 < /dev/null &
+fi
+if ! /usr/bin/curl -fsS http://127.0.0.1:3000/ >/dev/null 2>&1; then
+  /usr/bin/nohup "$PROJECT/.venv/bin/python" -m http.server 3000 --bind 127.0.0.1 --directory "$PROJECT/src/frontend/dist" >"$PROJECT/work/app-web.log" 2>&1 < /dev/null &
+fi
+for attempt in {1..30}; do
+  if /usr/bin/curl -fsS http://127.0.0.1:8000/health >/dev/null 2>&1 && /usr/bin/curl -fsS http://127.0.0.1:3000/ >/dev/null 2>&1; then /usr/bin/open http://localhost:3000; exit 0; fi
+  /bin/sleep 1
+done
+/usr/bin/open "$PROJECT/work"; exit 1
