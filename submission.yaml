@@ -1,5 +1,5 @@
 name: Clinical Trial Risk Monitor & Protocol Deviation Detector
-short_name: Trial Sentinel
+short_name: TrialSutra
 track: Pharma & Biotech
 description: Explainable protocol deviation detection, site risk ranking, and human-reviewable CAPA drafts using synthetic clinical-trial data.
 repository: https://github.com/MANNLATHIYA/bob-ai-hackathon--ARIP
@@ -22,7 +22,7 @@ submission:
     deviations across thousands of visits and hundreds of sites before late
     discovery compromises participant safety, data integrity, and trial timelines.
   solution_summary: >-
-    Trial Sentinel compares synthetic visit records against a machine-readable
+    TrialSutra compares synthetic visit records against a machine-readable
     protocol, classifies deviations, ranks site risk with transparent weights,
     and generates draft CAPA reports for qualified human review.
   key_features:

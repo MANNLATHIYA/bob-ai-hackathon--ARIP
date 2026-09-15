@@ -1,6 +1,6 @@
 # Clinical Trial Risk Monitor & Protocol Deviation Detector
 
-> **Trial Sentinel** is an explainable, synthetic-data-only hackathon demo that detects protocol deviations, prioritizes risky sites, and creates human-reviewable CAPA drafts before issues compound.
+> **TrialSutra** is an explainable, synthetic-data-only hackathon demo that detects protocol deviations, prioritizes risky sites, and creates human-reviewable CAPA drafts before issues compound.
 
 ![Python](https://img.shields.io/badge/Python-3.11+-123c31) ![FastAPI](https://img.shields.io/badge/FastAPI-0.115+-059669) ![React](https://img.shields.io/badge/React-TypeScript-2563eb) ![Data](https://img.shields.io/badge/Data-100%25_synthetic-e86f51)
 
@@ -16,7 +16,7 @@ A global trial can generate thousands of visits across hundreds of sites. Missed
 
 ## Solution
 
-Trial Sentinel ingests a machine-readable protocol and synthetic patient-visit records, applies deterministic compliance rules, optionally reviews ambiguous notes through a swappable LLM adapter, assigns an impact-oriented severity, and ranks all 200 sites with a transparent risk formula. Every finding retains its protocol clause, rationale, confidence, and source. Users can drill into a site trend and export a structured CAPA draft as PDF or DOCX.
+TrialSutra ingests a machine-readable protocol and synthetic patient-visit records, applies deterministic compliance rules, optionally reviews ambiguous notes through a swappable LLM adapter, assigns an impact-oriented severity, and ranks all 200 sites with a transparent risk formula. Every finding retains its protocol clause, rationale, confidence, and source. Users can drill into a site trend and export a structured CAPA draft as PDF or DOCX.
 
 The local demo works fully without an API key. “IBM Bob” is represented by the modular Python orchestration boundary connecting ingestion, deviation detection, severity classification, scoring, and CAPA generation.
 
@@ -110,10 +110,11 @@ See [docs/setup-guide.md](docs/setup-guide.md) for LLM configuration and verific
 
 ## Demo
 
-1. Open **Site overview** and inspect the risk-ranked worklist.
-2. Select a high-risk site to view monitoring recency, Major count, and trend.
-3. Open **Deviation feed**, filter severity, and inspect the cited clause and rationale.
-4. Click **Generate CAPA PDF** on any finding.
+1. Open **Overview** and choose **Review this site** for the highest-ranked site.
+2. Read each issue's explanation and suggested next step; expand **Evidence & protocol details** for the supporting record.
+3. Open **All issues** to filter by site, severity, or date, across the complete dataset.
+4. Click **Download action plan** to export a draft CAPA PDF.
+5. Use **How to use** for a three-step introduction and explanations of risk and severity.
 
 The final video link belongs in `demo/demo-video-link.txt`; final screenshots belong in `demo/screenshots/`.
 

@@ -1,10 +1,10 @@
-# Trial Sentinel — presentation outline
+# TrialSutra — presentation outline
 
 ## 1. The audit should not be the alarm
 - 5,000+ visits across 200+ sites hide accumulating operational risk.
 - Late discovery threatens participants, data integrity, timelines, and submission confidence.
 
-## 2. Meet Trial Sentinel
+## 2. Meet TrialSutra
 - Continuous protocol comparison and risk prioritization.
 - Traceable findings, transparent scoring, and one-click draft CAPA.
 
@@ -34,4 +34,3 @@
 ## 8. Roadmap and ask
 - Add identity/audit controls, validated integrations, controlled taxonomies, calibration, and 21 CFR Part 11 validation.
 - Pilot with synthetic sponsor scenarios and qualified clinical reviewers.
-
